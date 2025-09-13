@@ -13,6 +13,7 @@ from typing import Dict, List, Any
 from dataclasses import dataclass
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.lines import Line2D
 
 
 @dataclass
@@ -149,9 +150,9 @@ class GraphRAG:
         for entity_type, color in type_colors.items():
             if any(self.entities.get(node, Entity('', '', 'UNKNOWN', {})).type == entity_type 
                    for node in self.graph.nodes()):
-                legend_elements.append(plt.Line2D([0], [0], marker='o', color='w', 
-                                                markerfacecolor=color, markersize=10, 
-                                                label=entity_type))
+                legend_elements.append(Line2D([0], [0], marker='o', color='w', 
+                                              markerfacecolor=color, markersize=10, 
+                                              label=entity_type))
         
         if legend_elements:
             ax.legend(handles=legend_elements, loc='upper left', bbox_to_anchor=(0, 1))
@@ -403,4 +404,4 @@ if __name__ == "__main__":
     print(f"- karate_club.pkl (NetworkX pickle file)")
     print(f"- graph_3d_visualization.png (3D plot)")
     print(f"- graph_2d_visualization.png (2D plot)")
-    print(f"- karate_club_3d.png (Karate club 3D plot)") 
+    print(f"- karate_club_3d.png (Karate club 3D plot)")      
